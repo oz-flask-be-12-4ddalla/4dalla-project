@@ -2,15 +2,15 @@ from flask import Blueprint, request, jsonify
 from ..models import User
 from config import db
 
-users_blp = Blueprint("users", __name__)
+user_blp = Blueprint("users", __name__)
 
-@users_blp.route("/",methods=["GET"])
+@user_blp.route("/",methods=["GET"])
 def connect():
     if request.method == "GET":
         return jsonify({"message":"success Connect"})
 
 
-@users_blp.route("/signup", methods=["POST"])
+@user_blp.route("/signup", methods=["POST"])
 def signup():
     if User.query.filter_by(email=data["email"]).first():
         return jsonify({"message":"이미 가입된 이메일입니다."}),400
