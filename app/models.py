@@ -65,5 +65,4 @@ class Image(db.Model):
     url = db.Column(db.String(255), nullable=False)
     type = db.Column(db.Enum('main','sub'), nullable=False)
     created_at = db.Column(db.DateTime, default=get_korea_time)
-    updated_at = db.Column(db.DateTime, default=get_korea_time, onupdate=get_korea_time)
 
