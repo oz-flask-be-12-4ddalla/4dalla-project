@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from config import db
-from ..models import Image
+from app.models import Image
 
 images_blp = Blueprint("images",__name__)
 
