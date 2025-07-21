@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from config import db
-from models import Choice
+from app.models import Choice
 from datetime import datetime
 
 choices_blp = Blueprint('choice', __name__)
