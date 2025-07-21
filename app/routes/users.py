@@ -12,16 +12,21 @@ def connect():
 
 @user_blp.route("/signup", methods=["POST"])
 def signup():
+    data = request.get_json()
+
+    if not data.get("email") or "@" not in data["email"]:
+        return jsonify({"message":"이메일 형식이 올바르지 않습니다."}),400
+    
+    if not data.get("name"):
+        return jsonify({"message" : "이름을 입력해주세요."}),400
+    
     if User.query.filter_by(email=data["email"]).first():
         return jsonify({"message":"이미 가입된 이메일입니다."}),400
     
     if User.query.filter_by(name=data["name"]).first():
         return jsonify({"message":"이미 가입된 이름입니다."}),400
     
-    if not data.get["email"] or "@" not in data["email"]:
-        return jsonify({"message":"이메일 형식이 올바르지 않습니다."}),400
     
-    data = request.get_json()
     user = User(
         name =data["name"],
         email = data["email"],
