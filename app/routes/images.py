@@ -2,9 +2,9 @@ from flask import Blueprint, jsonify, request
 from config import db
 from ..models import Image
 
-images_bp = Blueprint("images",__name__)
+images_blp = Blueprint("images",__name__)
 
-@images_bp.route("/image", methods=["POST"])
+@images_blp.route("/image", methods=["POST"])
 def create_image():
     data = request.get_json()
 
@@ -29,7 +29,7 @@ def create_image():
     return jsonify({"message" :f"ID: {image.id} Image Success Create" }), 201
 
 
-@images_bp.route("/image/main", methods=["GET"])
+@images_blp.route("/image/main", methods=["GET"])
 def get_main_image():
     image = Image.query.filter_by(type="main").first()
 
