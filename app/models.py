@@ -1,12 +1,11 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from enum import Enum
 from zoneinfo import ZoneInfo
+from config import db
+
 
 def get_korea_time():
-    return datetime.now().replace(tzinfo=ZoneInfo('Asia/Seoul'))
-
-db = SQLAlchemy()
+    return datetime.now(tz=ZoneInfo('Asia/Seoul'))
 
 class User(db.Model):
     __tablename__ = 'users'
