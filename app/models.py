@@ -44,6 +44,17 @@ class Choice(db.Model):
     answers = db.relationship('Answer', backref='choice', lazy=True)
     question = db.relationship('Question', backref='choices', lazy=True)
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'question_id': self.question_id,
+            'content': self.content,
+            'sqe': self.sqe,
+            'is_active': self.is_active,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None
+        }
+
 class Question(db.Model):
     __tablename__ = 'questions'
 
