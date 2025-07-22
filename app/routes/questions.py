@@ -22,13 +22,13 @@ def create_questions():
                 return jsonify({"message": "Image not found"}), 404
 
             # 이미지 타입이 sub가 아니면 400 error
-            if image.type.value != "sub":
+            if image.type != "sub":
                 return jsonify({"message": "Image type must be 'sub'"}), 400
 
             question = Question(
+                image_id=data["image_id"],
                 title=data["title"],
                 sqe=data["sqe"],
-                image_id=data["image_id"],
                 is_active=data.get("is_active", True),
             )
             db.session.add(question)
